@@ -1,0 +1,14 @@
+C:\Users\batru\Documents\Day1LTW\Bai1QuanLySinhVien\bin\Debug\net8.0\Bai1QuanLySinhVien.exe
+C:\Users\batru\Documents\Day1LTW\Bai1QuanLySinhVien\bin\Debug\net8.0\Bai1QuanLySinhVien.deps.json
+C:\Users\batru\Documents\Day1LTW\Bai1QuanLySinhVien\bin\Debug\net8.0\Bai1QuanLySinhVien.runtimeconfig.json
+C:\Users\batru\Documents\Day1LTW\Bai1QuanLySinhVien\bin\Debug\net8.0\Bai1QuanLySinhVien.dll
+C:\Users\batru\Documents\Day1LTW\Bai1QuanLySinhVien\bin\Debug\net8.0\Bai1QuanLySinhVien.pdb
+C:\Users\batru\Documents\Day1LTW\Bai1QuanLySinhVien\obj\Debug\net8.0\Bai1QuanLySinhVien.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\batru\Documents\Day1LTW\Bai1QuanLySinhVien\obj\Debug\net8.0\Bai1QuanLySinhVien.AssemblyInfoInputs.cache
+C:\Users\batru\Documents\Day1LTW\Bai1QuanLySinhVien\obj\Debug\net8.0\Bai1QuanLySinhVien.AssemblyInfo.cs
+C:\Users\batru\Documents\Day1LTW\Bai1QuanLySinhVien\obj\Debug\net8.0\Bai1QuanLySinhVien.csproj.CoreCompileInputs.cache
+C:\Users\batru\Documents\Day1LTW\Bai1QuanLySinhVien\obj\Debug\net8.0\Bai1QuanLySinhVien.dll
+C:\Users\batru\Documents\Day1LTW\Bai1QuanLySinhVien\obj\Debug\net8.0\refint\Bai1QuanLySinhVien.dll
+C:\Users\batru\Documents\Day1LTW\Bai1QuanLySinhVien\obj\Debug\net8.0\Bai1QuanLySinhVien.pdb
+C:\Users\batru\Documents\Day1LTW\Bai1QuanLySinhVien\obj\Debug\net8.0\Bai1QuanLySinhVien.genruntimeconfig.cache
+C:\Users\batru\Documents\Day1LTW\Bai1QuanLySinhVien\obj\Debug\net8.0\ref\Bai1QuanLySinhVien.dll
