@@ -81,4 +81,22 @@ public Student NhapThongTinSinhVien(bool isUpdate = false)
 
     return new Student(maSV, hoTen, email, sdt, nganhHoc, ngaySinh, dtb, gioiTinh, trangThai);
 }
+public void InDanhSach(List<Student> ds)
+{
+    if (ds == null || ds.Count == 0)
+    {
+        Console.WriteLine("\n[!] Danh sach trong!");
+        return;
+    }
+
+    Console.WriteLine("\n" + new string('=', 110));
+    Console.WriteLine($"{"Ma SV",-8} | {"Ho Va Ten",-20} | {"Email",-22} | {"SDT",-11} | {"Nganh",-8} | {"Ngay Sinh",-10} | {"GPA",-5} | {"Phai",-5} | {"Trang Thai"}");
+    Console.WriteLine(new string('-', 110));
+
+    foreach (var item in ds)
+    {
+        Console.WriteLine(item);
+    }
+    Console.WriteLine(new string('=', 110));
+}
 }

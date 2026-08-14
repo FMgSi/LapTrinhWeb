@@ -40,7 +40,7 @@ public class MenuManager
             switch (chon)
             {
                 case "1":
-                    view.HienThiDanhSach(service.HienThiDanhSach());
+                    view.InDanhSach(service.HienThiDanhSach());
                     break;
 
                 case "2":
@@ -55,7 +55,7 @@ public class MenuManager
                     string maCanTim = view.NhapMaSV();
                     Student? svTim = service.TimSinhVienTheoMa(maCanTim);
                     if (svTim != null)
-                        view.HienThiDanhSach(new List<Student> { svTim });
+                        view.InDanhSach(new List<Student> { svTim });
                     else
                         Console.WriteLine("Khong tim thay");
                     break;
@@ -64,18 +64,18 @@ public class MenuManager
                     Console.Write("Nhap ten can tim: ");
                     string tuKhoa = Console.ReadLine() ?? "";
                     var dsTim = service.TimKiemTheoTen(tuKhoa);
-                    view.HienThiDanhSach(dsTim);
+                    view.InDanhSach(dsTim);
                     break;
 
                 case "5":
-                    Console.WriteLine("\n--- CAP NHAT SINH VIEN ---");
+                    Console.WriteLine("\nCap nhat sinh vien");
                     string maCanSua = view.NhapMaSV();
                     if (service.TimSinhVienTheoMa(maCanSua) == null)
                     {
-                        Console.WriteLine(">> Khong tim thay sinh vien de sua!");
+                        Console.WriteLine("Khong tim thay");
                         break;
                     }
-                    Student svSua = view.NhapThongTinSinhVien(sua: true);
+                    Student svSua = view.NhapThongTinSinhVien(isUpdate: true);
                     service.CapNhatSinhVien(maCanSua, svSua);
                     Console.WriteLine("Done!");
                     break;
@@ -89,21 +89,21 @@ public class MenuManager
                     break;
 
                 case "7":
-                    view.HienThiDanhSach(service.SapXepTheoHoTen());
+                    view.InDanhSach(service.SapXepTheoHoTen());
                     break;
 
                 case "8":
-                    view.HienThiDanhSach(service.SapXepTheoDiemTrungBinh());
+                    view.InDanhSach(service.SapXepTheoDiemTrungBinh());
                     break;
 
                 case "9":
-                    view.HienThiDanhSach(service.HienThiCacSinhVienCoDiemTu8TroLen());
+                    view.InDanhSach(service.HienThiCacSinhVienCoDiemTu8TroLen());
                     break;
 
                 case "10":
                     Student? diemMax = service.SinhVienCoDiemCaoNhat();
                     if (diemMax != null)
-                        view.HienThiDanhSach(new List<Student> { diemMax });
+                        view.InDanhSach(new List<Student> { diemMax });
                     else
                         Console.WriteLine("Rong");
                     break;
