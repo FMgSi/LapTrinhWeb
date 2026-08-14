@@ -1,59 +1,84 @@
-public class StudentConsoleView
+public class StudentConsoleView{
+
+public string NhapMaSV()
 {
-    public void HienThiDanhSach(List<Student> ds)
+    while (true)
     {
-        if (ds.Count == 0)
-        {
-            Console.WriteLine("Danh sach hien dang trong");
-        } else
-        {
-            foreach (var i in ds)
-            {
-                Console.WriteLine(i.MaSV + "\t" + i.HoTen + "\t" + i.Email + "\t" + i.sdt + "\t" + i.NganhHoc + "\t" + i.dtb + "\t" + i.TrangThaiHocTap);
-            }
-        }
-
+        Console.Write("Nhap ma sinh vien: ");
+        string? maSV = Console.ReadLine();
+        if (!string.IsNullOrWhiteSpace(maSV)) return maSV.Trim().ToUpper();
+        Console.WriteLine("Nhap lai");
     }
+}
 
-    public string NhapHoten()
+public string NhapHoten()
+{
+    while (true)
     {
-        while (true)
-        {
-            Console.Write("Nhap ho va ten: ");
-            string? HoTen = Console.ReadLine;
-
-            if (StudentValidator.IsValidName(HoTen ?? ""))
-            {
-                return HoTen!.Trim();
-            }
-
-            Console.WriteLine("Ten khong duoc de trong!");
-        }
+        Console.Write("Nhap ho ten: ");
+        string? hoTen = Console.ReadLine();
+        if (StudentValidator.IsValidName(hoTen ?? "")) return hoTen!.Trim();
+        Console.WriteLine("Nhap lai");
     }
+}
 
-    public double NhapDiemTrungBinh()
+public string NhapEmail()
+{
+    while (true)
     {
-        while (true)
-        {
-            Console.Write("Nhap diem trung binh (0.0 - 10.0): ");
-            string? input = Console.ReadLine();
-            if (double.TryParse(input, out double dtb) && StudentValidator.IsValidGpa(dtb));
-            {
-                return dtb;
-            }
-            }
-        }
-    public string NhapEmail()
-    {
-        while (true)
-        {
-            Console.Write("Nhap emial: ");
-            string? input = Console.ReadLine();
-            if (StudentValidator.IsValidEmail( ?? ""))
-            {
-                
-            }
-
-        }
+        Console.Write("Nhap email: ");
+        string? input = Console.ReadLine();
+        if (StudentValidator.IsValidEmail(input ?? "")) return input!.Trim();
+        Console.WriteLine("Nhap lai");
     }
+}
+
+public string NhapSdt()
+{
+    while (true)
+    {
+        Console.Write("Nhap so dien thoai: ");
+        string? sdt = Console.ReadLine();
+        if (!string.IsNullOrWhiteSpace(sdt)) return sdt.Trim();
+        Console.WriteLine("Nhap lai");
+    }
+}
+
+public double NhapDiemTrungBinh()
+{
+    while (true)
+    {
+        Console.Write("Nhap diem trung binh tu 0.0 den 10.0 ");
+        string? input = Console.ReadLine();
+        if (double.TryParse(input, out double dtb) && StudentValidator.IsValidGpa(dtb))
+        {
+            return dtb;
+        }
+        Console.WriteLine("Nhap lai");
+    }
+}
+
+public Student NhapThongTinSinhVien(bool isUpdate = false)
+{
+    string maSV = isUpdate ? "" : NhapMaSV();
+    string hoTen = NhapHoten();
+    string email = NhapEmail();
+    string sdt = NhapSdt();
+
+    Console.Write("Nhap nganh hoc ");
+    string nganhHoc = Console.ReadLine() ?? "";
+
+    Console.Write("Nhap ngay sinh (dd/MM/yyyy) ");
+    DateTime.TryParse(Console.ReadLine(), out DateTime ngaySinh);
+
+    double dtb = NhapDiemTrungBinh();
+
+    Console.Write("Nhap gioi tinh Nam/Nu: ");
+    string gioiTinh = Console.ReadLine() ?? "";
+
+    Console.Write("Nhap trang thai hoc tap : Dang hoc, bao luu, tot nghiep ");
+    string trangThai = Console.ReadLine() ?? "";
+
+    return new Student(maSV, hoTen, email, sdt, nganhHoc, ngaySinh, dtb, gioiTinh, trangThai);
+}
 }
