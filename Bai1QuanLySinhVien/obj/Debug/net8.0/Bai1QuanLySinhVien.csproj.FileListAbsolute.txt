@@ -12,3 +12,4 @@ C:\Users\batru\Documents\Day1LTW\Bai1QuanLySinhVien\obj\Debug\net8.0\refint\Bai1
 C:\Users\batru\Documents\Day1LTW\Bai1QuanLySinhVien\obj\Debug\net8.0\Bai1QuanLySinhVien.pdb
 C:\Users\batru\Documents\Day1LTW\Bai1QuanLySinhVien\obj\Debug\net8.0\Bai1QuanLySinhVien.genruntimeconfig.cache
 C:\Users\batru\Documents\Day1LTW\Bai1QuanLySinhVien\obj\Debug\net8.0\ref\Bai1QuanLySinhVien.dll
+C:\Users\batru\Documents\Day1LTW\Bai1QuanLySinhVien\obj\Debug\net8.0\Bai1QuanLySinhVien.sourcelink.json
