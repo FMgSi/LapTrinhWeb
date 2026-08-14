@@ -40,7 +40,7 @@ public class MenuManager
             switch (chon)
             {
                 case "1":
-                    view.InDanhSach(service.HienThiDanhSach());
+                    view.HienThiDanhSach(service.HienThiDanhSach());
                     break;
 
                 case "2":
@@ -55,7 +55,7 @@ public class MenuManager
                     string maCanTim = view.NhapMaSV();
                     Student? svTim = service.TimSinhVienTheoMa(maCanTim);
                     if (svTim != null)
-                        view.InDanhSach(new List<Student> { svTim });
+                        view.HienThiDanhSach(new List<Student> { svTim });
                     else
                         Console.WriteLine("Khong tim thay");
                     break;
@@ -70,7 +70,7 @@ public class MenuManager
                 case "5":
                     Console.WriteLine("\n--- CAP NHAT SINH VIEN ---");
                     string maCanSua = view.NhapMaSV();
-                    if (service.TimTheoMa(maCanSua) == null)
+                    if (service.TimSinhVienTheoMa(maCanSua) == null)
                     {
                         Console.WriteLine(">> Khong tim thay sinh vien de sua!");
                         break;
@@ -89,21 +89,21 @@ public class MenuManager
                     break;
 
                 case "7":
-                    view.InDanhSach(service.SapXepTheoHoTen());
+                    view.HienThiDanhSach(service.SapXepTheoHoTen());
                     break;
 
                 case "8":
-                    view.InDanhSach(service.SapXepTheoDiemTrungBinh());
+                    view.HienThiDanhSach(service.SapXepTheoDiemTrungBinh());
                     break;
 
                 case "9":
-                    view.InDanhSach(service.HienThiCacSinhVienCoDiemTu8TroLen());
+                    view.HienThiDanhSach(service.HienThiCacSinhVienCoDiemTu8TroLen());
                     break;
 
                 case "10":
                     Student? diemMax = service.SinhVienCoDiemCaoNhat();
                     if (diemMax != null)
-                        view.InDanhSach(new List<Student> { diemMax });
+                        view.HienThiDanhSach(new List<Student> { diemMax });
                     else
                         Console.WriteLine("Rong");
                     break;

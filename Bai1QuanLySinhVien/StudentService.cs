@@ -41,6 +41,15 @@ public class StudentService
         return students;
     }
 
+    public bool XoaSinhVienTheoMa(string masv)
+    {
+    Student? sv = TimSinhVienTheoMa(masv);
+    if (sv == null) return false;
+
+    students.Remove(sv);
+    return true;
+    }
+
     public bool CapNhatSinhVien(string masv, Student b)
     {
 
@@ -71,17 +80,6 @@ public class StudentService
     public List<Student> SapXepTheoHoTen()
     {
         return students.OrderBy(s => s.HoTen).ToList();
-    }
-
-    public void XoaSinhVienTheoMa(string masv)
-    {
-        for (int i = 0; i < students.Count; i++)
-        {
-            if (students[i].MaSV == masv)
-            {
-                students.Remove(students[i]);
-            }
-        }
     }
 
     public Student? SinhVienCoDiemCaoNhat()
@@ -129,7 +127,6 @@ public class StudentService
         return ketQua;
     }
 
-    // 👉 CÁCH CƠ BẢN (Dùng Dictionary + foreach)
     public Dictionary<string, int> ThongKeTheoNganhCoBan()
     {
         Dictionary<string, int> ketQua = new Dictionary<string, int>();
