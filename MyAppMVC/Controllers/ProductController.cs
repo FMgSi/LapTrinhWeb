@@ -4,9 +4,9 @@ namespace MyAppMVC.Controllers
 {
     public class ProductController : Controller
     {
-        public IActionResult Product()
+        public IActionResult Index()
         {
-            return Product();
+            return Index();
         }
     }
 }

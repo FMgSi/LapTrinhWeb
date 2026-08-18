@@ -1,6 +1,71 @@
 ﻿@{
-    ViewData["Title"] = "Product Page";
+    ViewData["Title"] = "Quản lý sản phẩm";
 }
 
-<h2>Quan ly san pham</h2>
-<table class="table table-bordered table-striped text-center">
+<h2 class="mb-4">Quản lý sản phẩm</h2>
+
+<table class="table table-bordered text-center align-middle">
+    <thead class="table-light">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Created At</th>
+            <th>Image</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>Laptop HP Pavilion</td>
+            <td>15.000.000 đ</td>
+            <td>20-10-2026</td>
+            <td>
+                <img src="~/images/laptop1.jpg" style="height: 40px; object-fit: contain;" />
+            </td>
+            <td>
+                <button class="btn btn-sm btn-success">View</button>
+            </td>
+        </tr>
+
+        <tr>
+            <td>2</td>
+            <td>Laptop Dell Vostro</td>
+            <td>18.500.000 đ</td>
+            <td>22-10-2026</td>
+            <td>
+                <img src="~/images/laptop2.jpg" style="height: 40px; object-fit: contain;" />
+            </td>
+            <td>
+                <button class="btn btn-sm btn-success">View</button>
+            </td>
+        </tr>
+
+        <tr>
+            <td>3</td>
+            <td>Laptop Asus Vivobook</td>
+            <td>16.200.000 đ</td>
+            <td>25-10-2026</td>
+            <td>
+                <img src="~/images/laptop3.jpg" style="height: 40px; object-fit: contain;" />
+            </td>
+            <td>
+                <button class="btn btn-sm btn-success">View</button>
+            </td>
+        </tr>
+
+        <tr>
+            <td>4</td>
+            <td>Laptop Gaming ROG</td>
+            <td>28.900.000 đ</td>
+            <td>28-10-2026</td>
+            <td>
+                <img src="~/images/laptop4.jpg" style="height: 40px; object-fit: contain;" />
+            </td>
+            <td>
+                <button class="btn btn-sm btn-success">View</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -2,41 +2,45 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="p-5 text-white bg-primary rounded-3 text-center">
-    <h1>EBAY</h1>
-    <img src="~/images/ebay-banner.png" />
-    <img src="~/images/logo-hp.png" />
-    <img src="~/images/logo-dell.png" />
-    <img src="~/images/logo-asus.png" />
-    <p>Ban may tinh cac hang</p>
-</div>
-<h3>Danh sach san pham</h3>
-<div class="row">
-    <div class="col-md-3">
-        <div class="card img-fluid">
-            <img src="~/images/laptop1.jpg" />
-        </div>
-        <div class="card-body text-center">Laptop1</div>
+<div class="bg-primary text-white text-center p-4 mb-4 rounded">
+    <div class="d-flex justify-content-center align-items-center gap-3 my-2">
+        <h2 class="mb-0 fw-bold">EBAY</h2>
+        <span class="fs-4">|</span>
+        <img src="~/images/logo-hp.png" style="height: 35px; object-fit: contain;" />
+        <img src="~/images/logo-dell.png" style="height: 35px; object-fit: contain;" />
+        <img src="~/images/logo-asus.png" style="height: 35px; object-fit: contain;" />
     </div>
-    <div class="col-md-3">
-        <div class="card img-fluid">
-            <img src="~/images/laptop2.jpg" />
-        </div>
-        <div class="card-body text-center">Laptop2</div>
-    </div>
-    <div class="col-md-3">
-        <div class="card img-fluid">
-            <img src="~/images/laptop3.jpg" />
-        </div>
-        <div class="card-body text-center">Laptop3</div>
-    </div>
-    <div class="col-md-3">
-        <div class="card img-fluid">
-            <img src="~/images/laptop4.jpg" />
-        </div>
-        <div class="card-body text-center">Laptop4</div>
-    </div>
+    <p class="mt-2 mb-0">Ban may tinh cac hang</p>
 </div>
 
+<h3 class="mb-3">Danh sach san pham</h3>
 
+<div class="row text-center g-3">
+    <div class="col-md-3">
+        <div class="card h-100 p-3 d-flex flex-column justify-content-between">
+            <img src="~/images/laptop1.jpg" style="height: 140px; object-fit: contain;" />
+            <p class="mt-3 mb-0">Laptop HP Pavilion</p>
+        </div>
+    </div>
 
+    <div class="col-md-3">
+        <div class="card h-100 p-3 d-flex flex-column justify-content-between">
+            <img src="~/images/laptop2.jpg" style="height: 140px; object-fit: contain;" />
+            <p class="mt-3 mb-0">Laptop Dell Vostro</p>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card h-100 p-3 d-flex flex-column justify-content-between">
+            <img src="~/images/laptop3.jpg" style="height: 140px; object-fit: contain;" />
+            <p class="mt-3 mb-0">Laptop Asus Vivobook</p>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card h-100 p-3 d-flex flex-column justify-content-between">
+            <img src="~/images/laptop4.jpg" style="height: 140px; object-fit: contain;" />
+            <p class="mt-3 mb-0">Laptop Gaming ROG</p>
+        </div>
+    </div>
+</div>
