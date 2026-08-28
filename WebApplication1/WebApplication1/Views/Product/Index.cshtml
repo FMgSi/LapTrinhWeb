@@ -1,0 +1,57 @@
+﻿@{
+    ViewData["Title"] = "Danh sách sản phẩm";
+    var categories = ViewBag.Categories as List<WebApplication1.Models.Category>;
+    var products = ViewBag.Products as List<WebApplication1.Models.Product>;
+}
+
+<div class="row">
+    <!-- Cột DANH MỤC bên trái -->
+    <div class="col-md-3">
+        <h4 class="text-uppercase">DANH MỤC</h4>
+        <div class="list-group">
+            <a href="/san-pham" class="list-group-item list-group-item-action">Tất cả sản phẩm</a>
+            @if (categories != null)
+            {
+                foreach (var cat in categories)
+                {
+                    <a href="/san-pham?categoryId=@cat.Id" class="list-group-item list-group-item-action">
+                        @cat.Name
+                    </a>
+                }
+            }
+        </div>
+    </div>
+
+    <!-- Cột DANH SÁCH SẢN PHẨM bên phải -->
+    <div class="col-md-9">
+        <h3>Danh sách sản phẩm</h3>
+        <div class="row">
+            @if (products != null && products.Count > 0)
+            {
+                foreach (var item in products)
+                {
+                    <div class="col-md-4 mb-4">
+                        <div class="thumbnail border p-2 text-center">
+                            <img src="@item.Image" alt="@item.Name" style="width: 100%; height: 200px; object-fit: cover;" />
+                            <div class="caption mt-2">
+                                <h5 style="font-size: 15px; height: 38px; overflow: hidden;">@item.Name</h5>
+                                <p class="text-muted mb-2">
+                                    <del>Giá: @item.Price</del> <span class="text-danger">Giá: @item.SalePrice</span>
+                                </p>
+                                <p>
+                                    <a href="/san-pham/detail/@item.Id" class="btn btn-success btn-block w-100">Chi tiết</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="col-12">
+                    <p class="text-muted">Không có sản phẩm nào trong danh mục này.</p>
+                </div>
+            }
+        </div>
+    </div>
+</div>
