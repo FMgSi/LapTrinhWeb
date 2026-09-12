@@ -1,20 +1,35 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Trang chủ";
 }
+
 <partial name="Banner" />
+
 <hr />
-<button id="loadAjax" class="btn btn"></button>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="text-center my-3">
+    <button id="loadAjax" class="btn btn-primary px-4 shadow-sm">
+        Click load book từ partialResult
+    </button>
 </div>
 
-<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
-    <ol class="carousel-indicators"></ol>
-    <div class="carousel-inner" role="listbox">
-        <div class="accordion-item active">
-            <img src="~/images/banner1.jpg" alt="ASP.NET" class="img-responsive"/>
-        </div>
-    </div>
+<hr />
+
+<div id="data-from-ajax" class="my-4">
+    <p class="text-center text-muted fst-italic">Nhấn nút bên trên để tải danh sách sách...</p>
 </div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#loadAjax').click(function () {
+                $('#data-from-ajax').html('<div class="text-center text-secondary py-3">Đang tải dữ liệu...</div>');
+
+                $('#data-from-ajax').load("/Book/PopularBook", function (response, status, xhr) {
+                    if (status === "error") {
+                        $('#data-from-ajax').html('<div class="alert alert-danger text-center">Không thể tải dữ liệu: ' + xhr.status + ' ' + xhr.statusText + '</div>');
+                    }
+                });
+            });
+        });
+    </script>
+}
