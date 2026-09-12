@@ -2,6 +2,7 @@
     ViewData["Title"] = "Trang chủ";
 }
 
+
 <partial name="Banner" />
 
 <hr />
@@ -33,3 +34,9 @@
         });
     </script>
 }
+
+<hr />
+<h3 class="text-primary my-3">Popular Book Load từ BookComponent</h3>
+
+@* Cú pháp gọi ViewComponent *@
+@await Component.InvokeAsync("Book")
