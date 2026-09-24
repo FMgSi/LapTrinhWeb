@@ -1,0 +1,37 @@
+@model IEnumerable<MvcModelDemo.Models.User>
+
+@{
+    ViewData["Title"] = "Danh sách User (Strongly-typed Model)";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h3>Danh sách User (Truyền Model vào View)</h3>
+    <a asp-action="SingleUserViewBag" class="btn btn-outline-info">
+        Xem Demo ViewBag &rarr;
+    </a>
+</div>
+
+<div class="row row-cols-1 row-cols-md-3 g-3">
+    @if (Model != null && Model.Any())
+    {
+        @foreach (var u in Model)
+        {
+            <div class="col">
+                <div class="card h-100 shadow-sm border-primary">
+                    <div class="card-body">
+                        <h5 class="card-title text-primary">@u.name</h5>
+                        <p class="card-text mb-1"><strong>ID:</strong> @u.Id</p>
+                        <p class="card-text mb-1"><strong>Địa chỉ:</strong> @u.address</p>
+                        <p class="card-text"><strong>Email:</strong> @u.email</p>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="col-12">
+            <div class="alert alert-info">Chưa có người dùng nào.</div>
+        </div>
+    }
+</div>

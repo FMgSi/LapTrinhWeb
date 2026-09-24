@@ -1,0 +1,50 @@
+@{
+    ViewData["Title"] = "Trang chủ - Demo ASP.NET Core MVC";
+}
+
+<div class="p-4 p-md-5 mb-4 rounded text-body-emphasis bg-body-secondary">
+    <div class="col-lg-8 px-0">
+        <h1 class="display-5 fst-italic fw-bold text-primary">ASP.NET Core 10 MVC Model Demo</h1>
+        <p class="lead my-3">
+            Dự án demo các cơ chế Model Binding, ViewBag, Strongly-typed View, và các thao tác CRUD cơ bản trong ASP.NET Core MVC trên .NET 10.
+        </p>
+    </div>
+</div>
+
+<div class="row g-4 py-2 row-cols-1 row-cols-lg-3">
+    <div class="col">
+        <div class="card h-100 shadow-sm border-primary">
+            <div class="card-body">
+                <h5 class="card-title text-primary">1. Model & ViewBag</h5>
+                <p class="card-text text-muted">Demo truyền dữ liệu từ Controller sang View bằng Strongly-typed Model và ViewBag.</p>
+                <div class="d-grid gap-2">
+                    <a asp-controller="User" asp-action="Index" class="btn btn-outline-primary btn-sm">Xem Danh sách User</a>
+                    <a asp-controller="User" asp-action="SingleUserViewBag" class="btn btn-outline-secondary btn-sm">Xem Demo ViewBag</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card h-100 shadow-sm border-success">
+            <div class="card-body">
+                <h5 class="card-title text-success">2. Quản lý CRUD User</h5>
+                <p class="card-text text-muted">Đầy đủ các chức năng: Xem danh sách, Thêm mới, Chỉnh sửa, Xem chi tiết và Xóa người dùng.</p>
+                <div class="d-grid gap-2">
+                    <a asp-controller="CrudUser" asp-action="Index" class="btn btn-success btn-sm">Vào trang Quản lý CRUD</a>
+                    <a asp-controller="CrudUser" asp-action="Create" class="btn btn-outline-success btn-sm">+ Thêm User mới</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card h-100 shadow-sm border-warning">
+            <div class="card-body">
+                <h5 class="card-title text-warning text-dark">3. Form Binding & Account</h5>
+                <p class="card-text text-muted">Demo Model Binding với Form đăng nhập (cả Primitive parameter và Complex object).</p>
+                <div class="d-grid gap-2">
+                    <a asp-controller="Account" asp-action="Login" class="btn btn-warning btn-sm">Trang Đăng nhập</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

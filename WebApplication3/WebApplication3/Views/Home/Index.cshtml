@@ -1,7 +1,7 @@
 ﻿@{
+    Layout = "my_layout";
     ViewData["Title"] = "Trang chủ";
 }
-
 
 <partial name="Banner" />
 
@@ -19,6 +19,11 @@
     <p class="text-center text-muted fst-italic">Nhấn nút bên trên để tải danh sách sách...</p>
 </div>
 
+<hr />
+<h3 class="text-primary my-3">Popular Book Load từ BookComponent</h3>
+
+@await Component.InvokeAsync("Book")
+
 @section Scripts {
     <script>
         $(document).ready(function () {
@@ -27,16 +32,10 @@
 
                 $('#data-from-ajax').load("/Book/PopularBook", function (response, status, xhr) {
                     if (status === "error") {
-                        $('#data-from-ajax').html('<div class="alert alert-danger text-center">Không thể tải dữ liệu: ' + xhr.status + ' ' + xhr.statusText + '</div>');
+                        $('#data-from-ajax').html('<div class="alert alert-danger text-center">Không thể tải dữ liệu: ' + xhr.status + '</div>');
                     }
                 });
             });
         });
     </script>
 }
-
-<hr />
-<h3 class="text-primary my-3">Popular Book Load từ BookComponent</h3>
-
-@* Cú pháp gọi ViewComponent *@
-@await Component.InvokeAsync("Book")

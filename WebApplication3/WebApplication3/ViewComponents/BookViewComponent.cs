@@ -7,11 +7,10 @@ namespace WebApplication3.ViewComponents
     {
         protected Book book = new Book();
 
-        // Phương thức Invoke sẽ tự động chạy khi component được gọi trên View
         public IViewComponentResult Invoke()
         {
             var books = book.GetBookList();
-            return View(books); // Sẽ tìm file Default.cshtml tương ứng
+            return View(books);
         }
     }
 }

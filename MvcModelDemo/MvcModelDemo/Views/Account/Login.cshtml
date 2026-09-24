@@ -1,0 +1,32 @@
+﻿@model MvcModelDemo.Models.Login
+
+@{
+    ViewData["Title"] = "User Details";
+}
+
+<h2>User Details</h2>
+
+@if (ViewBag.Error != null)
+{
+    <p style="color:red">@ViewBag.Error</p>
+}
+
+<form asp-action="Login" method="post">
+    <div>
+        <label asp-for="userName">User Name</label>
+    </div>
+    <div>
+        <input asp-for="userName" />
+    </div>
+
+    <div>
+        <label asp-for="password">Password</label>
+    </div>
+    <div>
+        <input asp-for="password" type="password" />
+    </div>
+
+    <div style="margin-top: 10px;">
+        <input type="submit" value="Submit" />
+    </div>
+</form>
