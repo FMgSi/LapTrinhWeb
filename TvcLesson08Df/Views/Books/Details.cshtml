@@ -1,0 +1,75 @@
+@model TvcLesson08Df.Models.Book
+
+@{
+    ViewData["Title"] = "Chi tiết sách";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow-sm border-0 rounded-3">
+            <div class="card-header bg-info text-dark py-3">
+                <h5 class="card-title mb-0"><i class="bi bi-info-circle-fill me-2"></i>Thông tin chi tiết cuốn sách</h5>
+            </div>
+            <div class="card-body p-4">
+                <div class="row mb-4">
+                    <div class="col-md-4 text-center">
+                        <div class="bg-light p-4 rounded border mb-2 d-flex align-items-center justify-content-center" style="min-height: 200px;">
+                            <i class="bi bi-book text-muted" style="font-size: 64px;"></i>
+                        </div>
+                        <span class="badge bg-primary">Mã sách: #@Model.BookId</span>
+                    </div>
+                    <div class="col-md-8">
+                        <h4 class="text-primary fw-bold mb-2">@Model.Title</h4>
+                        <p class="text-muted mb-3"><i class="bi bi-person-fill me-1"></i>Tác giả: <strong>@(Model.Author ?? "Chưa rõ")</strong></p>
+
+                        <div class="row g-2 mb-3">
+                            <div class="col-6">
+                                <div class="p-2 border rounded bg-light">
+                                    <small class="text-muted d-block">Thể loại</small>
+                                    <span class="fw-semibold">@(Model.Category?.CategoryName ?? "Chưa phân loại")</span>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="p-2 border rounded bg-light">
+                                    <small class="text-muted d-block">Nhà xuất bản</small>
+                                    <span class="fw-semibold">@(Model.Publisher?.PublisherName ?? "Chưa rõ NXB")</span>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="p-2 border rounded bg-light">
+                                    <small class="text-muted d-block">Đơn giá bán</small>
+                                    <span class="fw-bold text-danger fs-5">@Model.Price.ToString("N0") VNĐ</span>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="p-2 border rounded bg-light">
+                                    <small class="text-muted d-block">Tồn kho</small>
+                                    <span class="fw-bold text-success fs-5">@Model.Quantity cuốn</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <h6 class="fw-bold text-secondary mb-1">Mô tả nội dung:</h6>
+                            <p class="text-muted">@(Model.Description ?? "Chưa có mô tả chi tiết cho cuốn sách này.")</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-between border-top pt-3">
+                    <a asp-action="Index" class="btn btn-outline-secondary">
+                        <i class="bi bi-arrow-left me-1"></i> Quay lại danh sách
+                    </a>
+                    <div>
+                        <a asp-action="Edit" asp-route-id="@Model.BookId" class="btn btn-warning me-2">
+                            <i class="bi bi-pencil me-1"></i> Chỉnh sửa
+                        </a>
+                        <a asp-action="Delete" asp-route-id="@Model.BookId" class="btn btn-danger">
+                            <i class="bi bi-trash me-1"></i> Xóa sách
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,78 @@
+@model IEnumerable<TvcLesson08Df.Models.Publisher>
+
+@{
+    ViewData["Title"] = "Quản lý Nhà xuất bản";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h1 class="h3 text-primary mb-1"><i class="bi bi-buildings-fill me-2"></i>Quản lý Nhà xuất bản (Publishers)</h1>
+        <p class="text-muted mb-0">Thực hành Database First với Entity Framework Core - Bài 08</p>
+    </div>
+    <a asp-action="Create" class="btn btn-primary shadow-sm">
+        <i class="bi bi-plus-circle me-1"></i> Thêm mới NXB
+    </a>
+</div>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="bi bi-check-circle-fill me-2"></i> @TempData["SuccessMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<div class="card shadow-sm border-0 rounded-3">
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th class="ps-4">Mã NXB</th>
+                        <th>Tên nhà xuất bản</th>
+                        <th>Địa chỉ</th>
+                        <th>Điện thoại</th>
+                        <th>Số lượng sách</th>
+                        <th class="text-end pe-4">Hành động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="ps-4 fw-bold text-secondary">#@item.PublisherId</td>
+                            <td class="fw-semibold text-primary">@item.PublisherName</td>
+                            <td class="text-muted">@(item.Address ?? "Chưa có địa chỉ")</td>
+                            <td>@(item.Phone ?? "Chưa có SĐT")</td>
+                            <td>
+                                <span class="badge bg-secondary rounded-pill">
+                                    @(item.Books?.Count ?? 0) sách
+                                </span>
+                            </td>
+                            <td class="text-end pe-4">
+                                <a asp-action="Edit" asp-route-id="@item.PublisherId" class="btn btn-sm btn-outline-warning me-1">
+                                    <i class="bi bi-pencil"></i> Sửa
+                                </a>
+                                <a asp-action="Details" asp-route-id="@item.PublisherId" class="btn btn-sm btn-outline-info me-1">
+                                    <i class="bi bi-info-circle"></i> Chi tiết
+                                </a>
+                                <a asp-action="Delete" asp-route-id="@item.PublisherId" class="btn btn-sm btn-outline-danger">
+                                    <i class="bi bi-trash"></i> Xóa
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="6" class="text-center py-4 text-muted">Chưa có nhà xuất bản nào.</td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

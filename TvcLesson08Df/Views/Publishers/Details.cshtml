@@ -1,0 +1,56 @@
+@model TvcLesson08Df.Models.Publisher
+
+@{
+    ViewData["Title"] = "Chi tiết Nhà xuất bản";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-7">
+        <div class="card shadow-sm border-0 rounded-3">
+            <div class="card-header bg-info text-dark py-3">
+                <h5 class="card-title mb-0"><i class="bi bi-info-circle-fill me-2"></i>Chi tiết Nhà xuất bản</h5>
+            </div>
+            <div class="card-body p-4">
+                <dl class="row mb-4">
+                    <dt class="col-sm-4 text-muted">Mã NXB:</dt>
+                    <dd class="col-sm-8 fw-bold">#@Model.PublisherId</dd>
+
+                    <dt class="col-sm-4 text-muted">Tên nhà xuất bản:</dt>
+                    <dd class="col-sm-8 text-primary fw-semibold">@Model.PublisherName</dd>
+
+                    <dt class="col-sm-4 text-muted">Địa chỉ:</dt>
+                    <dd class="col-sm-8">@(Model.Address ?? "Chưa rõ")</dd>
+
+                    <dt class="col-sm-4 text-muted">Số điện thoại:</dt>
+                    <dd class="col-sm-8">@(Model.Phone ?? "Chưa rõ")</dd>
+
+                    <dt class="col-sm-4 text-muted">Đầu sách xuất bản:</dt>
+                    <dd class="col-sm-8"><span class="badge bg-secondary">@(Model.Books?.Count ?? 0) đầu sách</span></dd>
+                </dl>
+
+                @if (Model.Books != null && Model.Books.Any())
+                {
+                    <h6 class="fw-bold text-secondary mb-3"><i class="bi bi-book me-1"></i>Sách của NXB này:</h6>
+                    <ul class="list-group mb-4">
+                        @foreach (var book in Model.Books)
+                        {
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span>@book.Title</span>
+                                <span class="badge bg-primary rounded-pill">@book.Price.ToString("N0") VNĐ</span>
+                            </li>
+                        }
+                    </ul>
+                }
+
+                <div class="d-flex justify-content-between">
+                    <a asp-action="Index" class="btn btn-outline-secondary">
+                        <i class="bi bi-arrow-left me-1"></i> Quay lại danh sách
+                    </a>
+                    <a asp-action="Edit" asp-route-id="@Model.PublisherId" class="btn btn-warning">
+                        <i class="bi bi-pencil me-1"></i> Chỉnh sửa NXB
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
