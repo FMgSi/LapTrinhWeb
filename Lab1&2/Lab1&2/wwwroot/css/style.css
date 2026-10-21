@@ -1,0 +1,117 @@
+/*!
+ * SB Admin Theme Styles
+ */
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #f8f9fa;
+}
+
+.sb-nav-fixed {
+    padding-top: 56px;
+}
+
+.sb-topnav {
+    height: 56px;
+    z-index: 1039;
+}
+
+.sb-nav-fixed .sb-topnav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+}
+
+.sb-topnav .navbar-brand {
+    width: 250px;
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+#layoutSidenav {
+    display: flex;
+    min-height: calc(100vh - 56px);
+}
+
+#layoutSidenav #layoutSidenav_nav {
+    flex-basis: 250px;
+    flex-shrink: 0;
+    transition: margin-left 0.25s ease-in-out, width 0.25s ease-in-out;
+    z-index: 1038;
+}
+
+#layoutSidenav #layoutSidenav_content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: 0;
+    flex-grow: 1;
+    min-height: calc(100vh - 56px);
+    margin-left: 0;
+    transition: margin-left 0.25s ease-in-out;
+}
+
+body.sb-sidenav-toggled #layoutSidenav #layoutSidenav_nav {
+    margin-left: -250px;
+}
+
+.sb-sidenav-menu {
+    flex-grow: 1;
+}
+
+.sb-sidenav-menu .nav {
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+.sb-sidenav-menu .nav .sb-sidenav-menu-heading {
+    padding: 1.5rem 1rem 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #6c757d;
+}
+
+.sb-sidenav-menu .nav .nav-link {
+    display: flex;
+    align-items: center;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    position: relative;
+    color: rgba(33, 37, 41, 0.8);
+    text-decoration: none;
+    font-weight: 500;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out;
+}
+
+.sb-sidenav-menu .nav .nav-link:hover {
+    color: #0d6efd;
+    background-color: rgba(13, 110, 253, 0.08);
+}
+
+.sb-sidenav-menu .nav .nav-link .sb-nav-link-icon {
+    font-size: 0.95rem;
+    margin-right: 0.75rem;
+    width: 1.5rem;
+    text-align: center;
+    color: #6c757d;
+}
+
+.sb-sidenav-menu .nav .nav-link:hover .sb-nav-link-icon {
+    color: #0d6efd;
+}
+
+footer {
+    border-top: 1px solid #dee2e6;
+}
