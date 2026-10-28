@@ -54,11 +54,26 @@ namespace MyWebApp.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Create(Student s)
         {
-            s.Id = listStudents.Any() ? listStudents.Last().Id + 1 : 101;
-            listStudents.Add(s);
-            return View("Index", listStudents);
+            if (ModelState.IsValid)
+            {
+                s.Id = listStudents.Any() ? listStudents.Last().Id + 1 : 101;
+                listStudents.Add(s);
+                return RedirectToAction(nameof(Index));
+            }
+
+            // Nếu form lỗi, nạp lại data cho Radio/Dropdown trước khi trả về View
+            ViewBag.AllGenders = Enum.GetValues(typeof(Gender)).Cast<Gender>().ToList();
+            ViewBag.AllBranches = new List<SelectListItem>()
+            {
+                new SelectListItem { Text = "IT", Value = "1" },
+                new SelectListItem { Text = "BE", Value = "2" },
+                new SelectListItem { Text = "CE", Value = "3" },
+                new SelectListItem { Text = "EE", Value = "4" }
+            };
+            return View(s);
         }
     }
 }

@@ -1,0 +1,40 @@
+@model IEnumerable<MyWebApp.Models.Learner>
+@{
+    ViewData["Title"] = "Learners";
+    Layout = "~/Views/Shared/MyLayout.cshtml";
+}
+
+<div class="container-fluid px-4 mt-3">
+    <h3>Learner List</h3>
+    <p>
+        <a asp-action="Create" class="btn btn-primary">Create New Student</a>
+    </p>
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>Mã</th>
+                <th>Tên</th>
+                <th>Họ</th>
+                <th>Ngành</th>
+                <th>Ngày Nhập Học</th>
+                <th>Chức năng</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.LearnerID</td>
+                    <td>@item.FirstMidName</td>
+                    <td>@item.LastName</td>
+                    <td>@item.Major?.MajorName</td>
+                    <td>@item.EnrollmentDate.ToString("M/d/yyyy h:mm:ss tt")</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.LearnerID" class="text-primary me-2">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@item.LearnerID" class="text-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
