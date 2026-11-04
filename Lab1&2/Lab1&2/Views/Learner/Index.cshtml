@@ -1,40 +1,170 @@
 @model IEnumerable<MyWebApp.Models.Learner>
+
 @{
-    ViewData["Title"] = "Learners";
+    ViewData["Title"] = "Quản lý Sinh viên - Learner List";
     Layout = "~/Views/Shared/MyLayout.cshtml";
 }
 
-<div class="container-fluid px-4 mt-3">
-    <h3>Learner List</h3>
-    <p>
-        <a asp-action="Create" class="btn btn-primary">Create New Student</a>
-    </p>
-    <table class="table table-bordered table-striped">
-        <thead class="table-dark">
-            <tr>
-                <th>Mã</th>
-                <th>Tên</th>
-                <th>Họ</th>
-                <th>Ngành</th>
-                <th>Ngày Nhập Học</th>
-                <th>Chức năng</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>@item.LearnerID</td>
-                    <td>@item.FirstMidName</td>
-                    <td>@item.LastName</td>
-                    <td>@item.Major?.MajorName</td>
-                    <td>@item.EnrollmentDate.ToString("M/d/yyyy h:mm:ss tt")</td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.LearnerID" class="text-primary me-2">Edit</a>
-                        <a asp-action="Delete" asp-route-id="@item.LearnerID" class="text-danger">Delete</a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+<div class="container-fluid px-4 py-3">
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <div>
+            <h2 class="fw-bold text-primary mb-1">
+                <i class="fas fa-user-graduate me-2"></i> Danh Sách Sinh Viên
+            </h2>
+            <p class="text-muted mb-0 small">Lab: Lọc chuyên ngành, Tìm kiếm từ khóa và Phân trang bằng AJAX</p>
+        </div>
+        <div>
+            <a asp-action="Create" class="btn btn-success shadow-sm">
+                <i class="fas fa-plus-circle me-1"></i> Thêm Sinh Viên Mới
+            </a>
+        </div>
+    </div>
+
+    <!-- 1. Thanh lọc chuyên ngành lấy từ ViewComponent -->
+    @await Component.InvokeAsync("Major")
+
+    <!-- 2. Thanh tìm kiếm từ khóa -->
+    <div class="card shadow-sm border-0 mb-3">
+        <div class="card-body p-3">
+            <div class="row g-2 align-items-center">
+                <div class="col-md-6 col-lg-5">
+                    <div class="input-group">
+                        <span class="input-group-text bg-white border-end-0">
+                            <i class="fas fa-search text-muted"></i>
+                        </span>
+                        <input type="text" 
+                               id="keyword" 
+                               class="form-control border-start-0" 
+                               placeholder="Nhập tên hoặc họ sinh viên cần tìm..." 
+                               autocomplete="off" />
+                        <button type="button" id="btnClearKeyword" class="btn btn-outline-secondary" title="Xóa từ khóa">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <button type="button" id="btnSearch" class="btn btn-primary px-3 shadow-sm">
+                        <i class="fas fa-search me-1"></i> Tìm Kiếm
+                    </button>
+                    <button type="button" id="btnResetAll" class="btn btn-outline-secondary ms-1" title="Làm mới toàn bộ bộ lọc">
+                        <i class="fas fa-redo me-1"></i> Làm Mới
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Khu vực hiển thị bảng dữ liệu (sẽ được cập nhật bằng AJAX) -->
+    <div id="divContent" class="position-relative">
+        <partial name="LearnerTable" model="Model" />
+    </div>
 </div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            // Hàm xử lý trung tâm: Gửi AJAX kết hợp đa điều kiện (Ngành + Từ khóa + Trang)
+            function sendFilterRequest(pageIndex) {
+                var mid = $(".major-filter-btn.active").data("mid");
+                var keyword = $("#keyword").val().trim();
+                var page = pageIndex || 1;
+
+                // Hiệu ứng Loading hiển thị ngay lập tức
+                var loadingHtml = `
+                    <div class="text-center py-5 my-3">
+                        <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
+                            <span class="visually-hidden">Đang tải...</span>
+                        </div>
+                        <p class="mt-2 text-muted fw-semibold">Đang tải dữ liệu...</p>
+                    </div>
+                `;
+                $("#divContent").html(loadingHtml);
+
+                $.ajax({
+                    url: "/Learner/LearnerFilter",
+                    type: "GET",
+                    data: {
+                        mid: mid ? mid : null,
+                        keyword: keyword ? keyword : null,
+                        pageIndex: page
+                    },
+                    success: function (response) {
+                        $("#divContent").html(response);
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("AJAX Error: ", error);
+                        $("#divContent").html(`
+                            <div class="alert alert-danger text-center my-3">
+                                <i class="fas fa-exclamation-triangle fa-2x mb-2 d-block"></i>
+                                <strong>Lỗi tải dữ liệu!</strong> Không thể kết nối tới máy chủ. Vui lòng thử lại.
+                            </div>
+                        `);
+                    }
+                });
+            }
+
+            // 1. Bắt sự kiện click chọn chuyên ngành
+            $(document).on("click", ".major-filter-btn", function (e) {
+                e.preventDefault();
+                // Chuyển đổi trạng thái active giữa các nút ngành
+                $(".major-filter-btn").removeClass("active");
+                $(this).addClass("active");
+
+                // Khi đổi ngành, tự động chuyển về trang 1 nhưng vẫn giữ từ khóa đang tìm kiếm
+                sendFilterRequest(1);
+            });
+
+            // 2. Bắt sự kiện click nút tìm kiếm
+            $("#btnSearch").click(function (e) {
+                e.preventDefault();
+                sendFilterRequest(1);
+            });
+
+            // 3. Bắt sự kiện nhấn phím Enter trong ô tìm kiếm
+            $("#keyword").on("keypress", function (e) {
+                if (e.which === 13) {
+                    e.preventDefault();
+                    sendFilterRequest(1);
+                }
+            });
+
+            // 4. Xóa từ khóa tìm kiếm nhanh
+            $("#btnClearKeyword").click(function () {
+                $("#keyword").val("").focus();
+                sendFilterRequest(1);
+            });
+
+            // 5. Làm mới toàn bộ bộ lọc về trạng thái ban đầu
+            $("#btnResetAll, $(document).on('click', '#btnResetFilters', function() {})").click(function () {
+                $("#keyword").val("");
+                $(".major-filter-btn").removeClass("active");
+                $("#major-all").addClass("active");
+                sendFilterRequest(1);
+            });
+
+            $(document).on("click", "#btnResetFilters", function () {
+                $("#keyword").val("");
+                $(".major-filter-btn").removeClass("active");
+                $("#major-all").addClass("active");
+                sendFilterRequest(1);
+            });
+
+            // 6. Bắt sự kiện click chuyển số trang (Dùng Event Delegation để không bị liệt event)
+            $(document).on("click", ".page-link-custom", function (e) {
+                e.preventDefault();
+                var parentLi = $(this).closest("li");
+                
+                // Nếu nút đang disabled hoặc trang hiện tại thì không làm gì
+                if (parentLi.hasClass("disabled") || parentLi.hasClass("active")) {
+                    return;
+                }
+
+                var targetPage = $(this).data("page");
+                if (targetPage && targetPage > 0) {
+                    sendFilterRequest(targetPage);
+                }
+            });
+        });
+    </script>
+}

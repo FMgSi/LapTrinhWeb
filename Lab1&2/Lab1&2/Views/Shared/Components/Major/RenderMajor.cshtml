@@ -1,0 +1,31 @@
+@model IEnumerable<MyWebApp.Models.Major>
+
+<div class="card mb-3 shadow-sm border-0">
+    <div class="card-body p-2 bg-light rounded">
+        <div class="d-flex align-items-center flex-wrap gap-2" id="majorContainer">
+            <span class="text-secondary fw-semibold me-2">
+                <i class="fas fa-filter"></i> Lọc theo ngành:
+            </span>
+
+            <!-- Nút Tất cả chuyên ngành để bỏ lọc -->
+            <button type="button" 
+                    class="btn btn-sm btn-outline-primary active major-filter-btn" 
+                    id="major-all" 
+                    data-mid="">
+                <i class="fas fa-list me-1"></i> Tất cả
+            </button>
+
+            <!-- Danh sách các ngành lấy từ database -->
+            @foreach (var m in Model)
+            {
+                <button type="button" 
+                        class="btn btn-sm btn-outline-primary major-filter-btn" 
+                        id="@m.MajorID" 
+                        data-mid="@m.MajorID">
+                    <i class="fas fa-graduation-cap me-1"></i> @m.MajorName
+                </button>
+            }
+        </div>
+    </div>
+</div>
+

@@ -1,53 +1,57 @@
 @model MyWebApp.Models.Learner
+
 @{
-    ViewData["Title"] = "Edit Learner";
+    ViewData["Title"] = "Chỉnh Sửa Sinh Viên";
     Layout = "~/Views/Shared/MyLayout.cshtml";
 }
 
-<div class="container-fluid px-4 mt-3">
-    <h3>Edit Learner</h3>
-    <hr />
-    <form asp-action="Edit" method="post">
-        <div asp-validation-summary="All" class="text-danger"></div>
-        <input type="hidden" asp-for="LearnerID" />
+<div class="container-fluid px-4 py-3">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0"><i class="fas fa-user-edit me-2"></i> Cập Nhật Sinh Viên</h5>
+                </div>
+                <div class="card-body p-4">
+                    <form asp-action="Edit" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                        <input type="hidden" asp-for="LearnerID" />
 
-        <div class="form-group row mb-3">
-            <label asp-for="FirstMidName" class="col-sm-2 col-form-label">First Mid Name</label>
-            <div class="col-sm-6">
-                <input asp-for="FirstMidName" class="form-control" />
-                <span asp-validation-for="FirstMidName" class="text-danger"></span>
+                        <div class="mb-3">
+                            <label asp-for="FirstMidName" class="form-label fw-semibold"></label>
+                            <input asp-for="FirstMidName" class="form-control" />
+                            <span asp-validation-for="FirstMidName" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="LastName" class="form-label fw-semibold"></label>
+                            <input asp-for="LastName" class="form-control" />
+                            <span asp-validation-for="LastName" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="EnrollmentDate" class="form-label fw-semibold"></label>
+                            <input asp-for="EnrollmentDate" type="date" class="form-control" />
+                            <span asp-validation-for="EnrollmentDate" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="MajorID" class="form-label fw-semibold"></label>
+                            <select asp-for="MajorID" class="form-select" asp-items="ViewBag.MajorID"></select>
+                            <span asp-validation-for="MajorID" class="text-danger small"></span>
+                        </div>
+
+                        <div class="d-flex justify-content-between mt-4">
+                            <a asp-action="Index" class="btn btn-outline-secondary">
+                                <i class="fas fa-arrow-left me-1"></i> Quay lại
+                            </a>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save me-1"></i> Lưu Thay Đổi
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-
-        <div class="form-group row mb-3">
-            <label asp-for="LastName" class="col-sm-2 col-form-label">Last Name</label>
-            <div class="col-sm-6">
-                <input asp-for="LastName" class="form-control" />
-                <span asp-validation-for="LastName" class="text-danger"></span>
-            </div>
-        </div>
-
-        <div class="form-group row mb-3">
-            <label asp-for="MajorID" class="col-sm-2 col-form-label">Major</label>
-            <div class="col-sm-6">
-                <select asp-for="MajorID" class="form-select" asp-items="ViewBag.MajorID"></select>
-                <span asp-validation-for="MajorID" class="text-danger"></span>
-            </div>
-        </div>
-
-        <div class="form-group row mb-3">
-            <label asp-for="EnrollmentDate" class="col-sm-2 col-form-label">Enrollment Date</label>
-            <div class="col-sm-6">
-                <input asp-for="EnrollmentDate" type="date" class="form-control" />
-                <span asp-validation-for="EnrollmentDate" class="text-danger"></span>
-            </div>
-        </div>
-
-        <div class="form-group row">
-            <div class="col-sm-6 offset-sm-2">
-                <button type="submit" class="btn btn-primary">Save</button>
-                <a asp-action="Index" class="btn btn-secondary ms-2">Back to List</a>
-            </div>
-        </div>
-    </form>
+    </div>
 </div>
