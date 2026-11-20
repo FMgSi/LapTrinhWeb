@@ -1,0 +1,19 @@
+﻿@model IEnumerable<Sach>
+
+<div class="section-head">
+    <h3>@ViewBag.TieuDe</h3>
+    <a href="#">Xem tất cả &rsaquo;</a>
+</div>
+<div class="grid">
+    @foreach (var s in Model)
+    {
+        <div class="book-card">
+            <a href="#"><img src="~/images/@s.Anh" alt="@s.TenSach"/></a>
+            <h2>@s.TenSach</h2>
+            <div class="book-foot">
+                <span class="price">@(s.Gia.HasValue ? s.Gia.Value.ToString("0") : "Chưa có giá" )</span>
+                <button class="btn-buy">Thêm vào giỏ</button>
+            </div>
+        </div>
+    }
+</div>

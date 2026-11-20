@@ -1,0 +1,38 @@
+﻿@model Sach
+@{
+    ViewData["Title"] = "Thêm sách mới";
+    Layout = "HoangBaTrung_Layout";
+}
+
+<div class="section-head">
+    <h3>HOÀNG BÁ TRUNG - THÊM SÁCH MỚI</h3>
+</div>
+
+<div class="form-box">
+    <form asp-action="Create" method="post">
+        <div class="form-group">
+            <label asp-for="MaTL">MaTL</label>
+            <select asp-for="MaTL" asp-items="ViewBag.DsTheLoai" class="form-control"></select>
+        </div>
+        <div class="form-group">
+            <label asp-for="TenSach">TenSach</label>
+            <input asp-for="TenSach" type="text" class="form-control" />
+            <span asp-validation-for="TenSach" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Gia">Gia</label>
+            <input asp-for="Gia" type="text" class="form-control" />
+            <span asp-validation-for="Gia" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Anh">Anh</label>
+            <input asp-for="Anh" type="text" class="form-control" />
+            <span asp-validation-for="Anh" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn-buy">Create</button>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
