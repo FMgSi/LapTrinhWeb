@@ -1,0 +1,30 @@
+﻿@model IEnumerable<HangHoa>
+
+<div class="content_top">
+    <div class="heading">
+        <h3>@ViewBag.TieuDe</h3>
+    </div>
+    <div class="see">
+        <p> <a href="#">See all Products</a> </p>
+    </div>
+    <div class="clear"></div>
+</div>
+
+<div class="section group">
+    @foreach (var h in Model)
+    {
+        <div class="grid_1_of_4 images_1_of_4">
+            <a href="#"> <img src="~/images/@h.Anh" alt="@h.TenHang" /> </a>
+            <h2>@h.TenHang</h2>
+            <div class="price-details">
+                <div class="price-number">
+                    <p> <span class="rupees">@(h.Gia.HasValue ? h.Gia.Value.ToString("0") : "Chưa có giá")</span> </p>
+                </div>
+                <div class="add-cart">
+                    <h4> <a href="#">Add to cart</a> </h4>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    }
+</div>
